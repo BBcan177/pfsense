@@ -415,7 +415,6 @@ events.push(function() {
 	$('#saveform').click(function () {
 		// For each row in the peers table, construct an array of inputs with the values from the row
 		$('#peertable > tbody').find('tr').each(function (idx) {
-			console.log('Descr: ' + $(this).find('td').eq(1).text())
 			$('<input>').attr({type: 'hidden',name: 'descp' + idx, value: $(this).find('td').eq(1).text()}).appendTo(form);
 			$('<input>').attr({type: 'hidden',name: 'endpoint' + idx, value: $(this).find('td').eq(2).text()}).appendTo(form);
 			$('<input>').attr({type: 'hidden',name: 'port' + idx, value: $(this).find('td').eq(3).text()}).appendTo(form);
@@ -428,7 +427,7 @@ events.push(function() {
 
 		$('<input>').attr({type: 'hidden',name: 'save',value: 'save'}).appendTo(form);
 
-		// Recaculate the table has so the browser doesn't intercept the save
+		// Recalculate the table hash so the browser doesn't intercept the save
 		tableHash = hashCode($('#peertable').html());
 		$(form).submit();
 	});
@@ -530,7 +529,7 @@ events.push(function() {
 	});
 
 	// Warn the user if the peer table has been updated, but the form has not yet been saved ----------------------------
-	// SAev te htable state on page load
+	// Save the table state on page load
 	var tableHash = hashCode($('#peertable').html());
 
 	window.addEventListener('beforeunload', (event) => {
